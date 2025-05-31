@@ -23,7 +23,10 @@ export function useGetAllLists() {
           };
         } catch (e) {
           // It's good practice to still log the error, but not the full objects unless necessary for debugging
-          console.error(`Error fetching bookmark data for list ${list.id} (${list.name}):`, e instanceof Error ? e.message : e);
+          console.error(
+            `Error fetching bookmark data for list ${list.id} (${list.name}):`,
+            e instanceof Error ? e.message : e,
+          );
           return { ...list, count: 0 } as ListWithCount;
         }
       }),
