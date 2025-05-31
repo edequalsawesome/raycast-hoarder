@@ -131,6 +131,11 @@ export const translations = {
       updating: "Updating bookmark...",
       updateSuccess: "Bookmark updated successfully",
       updateFailed: "Bookmark update failed",
+
+      // Form fields
+      fields: {
+        note: "📒 Note",
+      },
     },
 
     // List Related
@@ -142,9 +147,9 @@ export const translations = {
         title: "No bookmarks found",
         description: "No bookmarks in favorites",
       },
-      archive: "Archive",
-      openArchive: "Open Archived",
-      searchInArchive: "Search in Archive...",
+      archived: "Archived",
+      openArchived: "Open Archived",
+      searchInArchived: "Search in Archived...",
       openList: "Open List",
       deleteList: "Delete List",
       deleteConfirm: "Are you sure you want to delete list {name}?",
@@ -375,6 +380,11 @@ export const translations = {
       updating: "更新中...",
       updateSuccess: "更新成功",
       updateFailed: "更新失败",
+
+      // Form fields
+      fields: {
+        note: "📒 笔记",
+      },
     },
 
     // 列表相关
@@ -386,9 +396,9 @@ export const translations = {
         title: "暂无收藏",
         description: "收藏夹中暂无书签",
       },
-      archive: "已归档",
-      openArchive: "打开已归档",
-      searchInArchive: "在已归档中搜索...",
+      archived: "已归档",
+      openArchived: "打开已归档",
+      searchInArchived: "在已归档中搜索...",
       openList: "打开列表",
       deleteList: "删除列表",
       deleteConfirm: "确定要删除列表 {name} 吗？",
