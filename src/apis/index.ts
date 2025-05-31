@@ -31,10 +31,8 @@ export async function fetchWithAuth(path: string, options: FetchOptions = {}): P
 
   try {
     return JSON.parse(data);
-  } catch (e) {
-    // If JSON parsing fails, throw an error to make it visible to the calling hook.
-    // Include the original data in the error message for debugging.
-    throw new Error(`Failed to parse JSON response: ${e}. Response data: ${data}`);
+  } catch {
+    return data;
   }
 }
 

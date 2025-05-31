@@ -1,11 +1,5 @@
 # Hoarder Changelog
 
-## [2.1.0] - {PR_MERGE_DATE}
-
-- Fixed Lists to show the correct number of items
-- Changed "Hoarder" text references to "Karakeep" throughout the extension
-- Set "Add URL" as the default option for "Add Bookmark" functionality
-
 ## [2.0.0] - 2024-12-11
 
 ### Major Changes
@@ -21,7 +15,7 @@
 
 ### [Sink API Integration] - 2024-11-24
 
-- Implemented core functionality for communicating with Karakeep API
+- Implemented core functionality for communicating with Hoarder API
 - Added search, list, and detail view functionality
 
 ### [UI Development] - 2024-11-24
@@ -31,7 +25,7 @@
 
 ### [Settings and Preferences] - 2024-11-24
 
-- Implemented configuration for Karakeep API host and apikey
+- Implemented configuration for Hoarder API host and apikey
 - Added language preference setting (English and Chinese)
 
 ### [Enhanced Project Initialization] - 2024-11-24

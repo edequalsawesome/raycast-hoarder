@@ -95,24 +95,6 @@ export interface ListDetails {
   bookmarks: Bookmark[];
 }
 
-// Specific bookmark response structures
-export interface DataBookmarkResponse {
-  data: Bookmark[];
-  nextCursor?: string | null; // Optional: if pagination info is alongside data
-}
-
-export interface ItemsBookmarkResponse {
-  items: Bookmark[];
-  nextCursor?: string | null; // Optional: if pagination info is alongside items
-}
-
-// Defines the possible shapes of the response when fetching bookmarks.
-// This helps in type-checking and handling different API response structures.
-export type PossibleBookmarkResponse =
-  | Bookmark[] // API might return a direct array of bookmarks.
-  | ApiResponse<Bookmark> // Standard API response structure.
-  | DataBookmarkResponse // Custom structure with bookmarks under a 'data' key.
-  | ItemsBookmarkResponse; // Custom structure with bookmarks under an 'items' key.
 export interface ApiResponse<T extends List | Tag | Bookmark = List | Tag | Bookmark> {
   lists?: T[];
   tags?: T[];

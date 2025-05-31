@@ -1,7 +1,7 @@
 import { useCachedPromise } from "@raycast/utils";
 import { useCallback, useEffect, useState } from "react";
 import { fetchGetSingleListBookmarks } from "../apis";
-import { Bookmark, PossibleBookmarkResponse } from "../types";
+import { ApiResponse, Bookmark } from "../types";
 
 interface ListBookmarksState {
   allBookmarks: Bookmark[];
@@ -22,52 +22,15 @@ export function useGetListsBookmarks(listId: string) {
   );
 
   const { isLoading, data, error, revalidate } = useCachedPromise(
-    async (listId, cursorInput) => {
-      const rawFetchedData = (await fetchGetSingleListBookmarks(
+    async (listId, cursor) => {
+      const result = (await fetchGetSingleListBookmarks(
         listId,
-        cursorInput === "initial" ? undefined : cursorInput,
-      )) as PossibleBookmarkResponse;
-
-      let bookmarks: Bookmark[] = [];
-      let nextCursor: string | null = null;
-      let hasMore = false;
-
-      if (Array.isArray(rawFetchedData)) {
-        // Case 1: API returns a direct array of bookmarks
-        bookmarks = rawFetchedData; // Already Bookmark[] due to type guard
-        // For direct arrays, pagination info from the response body is usually not available.
-        nextCursor = null;
-        hasMore = false; // Or determine based on array length if a page size is known.
-      } else if (rawFetchedData && typeof rawFetchedData === "object") {
-        // Case 2: API returns an object (ApiResponse, DataBookmarkResponse, or ItemsBookmarkResponse)
-        if ("bookmarks" in rawFetchedData && Array.isArray(rawFetchedData.bookmarks)) {
-          // ApiResponse<Bookmark>
-          bookmarks = rawFetchedData.bookmarks;
-          nextCursor = rawFetchedData.nextCursor ?? null;
-        } else if ("data" in rawFetchedData && Array.isArray(rawFetchedData.data)) {
-          // DataBookmarkResponse
-          bookmarks = rawFetchedData.data;
-          nextCursor = rawFetchedData.nextCursor ?? null; // Assuming nextCursor might be part of DataBookmarkResponse
-        } else if ("items" in rawFetchedData && Array.isArray(rawFetchedData.items)) {
-          // ItemsBookmarkResponse
-          bookmarks = rawFetchedData.items;
-          nextCursor = rawFetchedData.nextCursor ?? null; // Assuming nextCursor might be part of ItemsBookmarkResponse
-        }
-        // If no known key is found, bookmarks remains an empty array.
-
-        // nextCursor is already handled above for specific response types.
-        // If the object doesn't match any known structure with a cursor, nextCursor remains null.
-        // Add more checks for pagination if other keys are possible e.g. responseObject.meta?.pagination?.next_cursor
-
-        hasMore = !!nextCursor;
-      }
-      // If rawFetchedData is not an array or object, bookmarks will be [], nextCursor null, hasMore false.
-      // Errors during fetch (like network or parsing errors from fetchWithAuth) should be caught by useCachedPromise.
-
+        cursor === "initial" ? undefined : cursor,
+      )) as ApiResponse<Bookmark>;
       return {
-        bookmarks: bookmarks,
-        hasMore: hasMore,
-        nextCursor: nextCursor,
+        bookmarks: result.bookmarks,
+        hasMore: result.nextCursor !== null,
+        nextCursor: result.nextCursor,
       };
     },
     [listId, state.cursor],
