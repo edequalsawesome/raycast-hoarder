@@ -1,12 +1,11 @@
 # Hoarder Changelog
 
-## [2.0.1] - 2025-01-05
+## [2.0.1] - {PR_MERGE_DATE}
 
 ### Minor Changes
 
 - Added note, archive and favourited fields to create bookmark view
 - Fixed type compatibility issue with createdAt field when creating bookmarks
--
 
 ## [2.0.0] - 2024-12-11
 

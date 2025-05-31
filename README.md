@@ -55,11 +55,11 @@ Before you begin, ensure you have the following:
 
 I strongly recommend setting up Karakeep with Docker for easy deployment and management.
 
-Create an API key by visiting `https://your-hoarder-instance.com/settings/api-keys` and clicking the 'New API Key' button.
+Create an API key by visiting `https://your-karakeep-instance.com/settings/api-keys` and clicking the 'New API Key' button.
 
 ## 🚦 Configuration
 
-After installation, set up the extension with your hoarder instance details:
+After installation, set up the extension with your Karakeep instance details:
 
 1. Open Raycast Preferences
 2. Navigate to the Extensions tab
